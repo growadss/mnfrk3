@@ -249,7 +249,8 @@ function goTelegram(){
   clickedAt=Date.now();
   try{ sessionStorage.setItem('twm2_clicked','1'); }catch(_){}
   var start=Date.now();
-  window.location.href=tgAppLink(TELEGRAM_LINK);             // pehle Telegram app
+  if(!/android/i.test(navigator.userAgent)){ window.location.href=TELEGRAM_LINK; return; } // iPhone/others: seedha t.me
+  window.location.href=tgAppLink(TELEGRAM_LINK);             // Android: pehle Telegram app
   setTimeout(function(){                                       // app nahi khula to normal link
     if(!document.hidden && Date.now()-start<2500) window.location.href=TELEGRAM_LINK;
   },1500);
